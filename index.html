@@ -1,110 +1,99 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEIC to JPG Dönüştürücü - Ücretsiz & Hızlı (iPhone Fotoğraf Açma)</title>
-    <meta name="description" content="iPhone HEIC ve HEIF fotoğraflarınızı anında JPG veya PNG formatına dönüştürün. Yükleme yok, %100 güvenli ve tarayıcı üzerinde tamamen ücretsiz.">
-    <meta name="keywords" content="heic to jpg, heic dönüştürücü, iphone fotoğraf açma, heif to png, ücretsiz heic converter">
-    
-    <!-- Open Graph / Sosyal Medya -->
-    <meta property="og:title" content="HEIC to JPG Dönüştürücü - Ücretsiz & Hızlı">
-    <meta property="og:description" content="iPhone fotoğraflarınızı kaliteden ödün vermeden tarayıcınızda ücretsiz JPG'ye dönüştürün.">
-    <meta property="og:type" content="website">
-
-    <!-- Tailwind CSS CDN -->
+    <title>HEIC2JPG Quick - Free Online HEIC to JPG Converter</title>
+    <meta name="description" content="Convert HEIC images to JPG directly in your browser. Fast, free, private, and unlimited file conversion without server uploads.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- heic2any Kütüphanesi -->
-    <script src="https://unpkg.com/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.4/heic2any.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between font-sans">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
 
     <!-- Header -->
-    <header class="bg-white border-b border-slate-200 py-4 px-6 text-center shadow-sm">
-        <h1 class="text-2xl font-bold text-indigo-600">HEIC2JPG Quick</h1>
-        <p class="text-xs text-slate-500 mt-1">iPhone Fotoğraf Formatı Dönüştürücü (%100 Güvenli & Yerel)</p>
+    <header class="bg-white border-b border-slate-200 py-4 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-indigo-600 tracking-tight">HEIC2JPG Quick</h1>
+            <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full font-medium">100% Client-Side & Free</span>
+        </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-3xl mx-auto px-4 py-8 flex-grow w-full">
-        <!-- Hero Section -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-10">
         <div class="text-center mb-8">
-            <h2 class="text-3xl font-extrabold text-slate-900 mb-2">HEIC Fotoğraflarınızı Anında JPG'ye Çevirin</h2>
-            <p class="text-slate-600 text-sm">Dosyalarınız sunucuya yüklenmez, tüm işlem tamamen bilgisayarınızda gerçekleşir.</p>
+            <h2 class="text-3xl font-extrabold text-slate-900 mb-3">Convert HEIC Photos to JPG Instantly</h2>
+            <p class="text-slate-600 max-w-xl mx-auto">Files are processed locally on your device. No uploads to external servers, completely secure and lightning fast.</p>
         </div>
 
-        <!-- Upload & Convert Card -->
-        <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
-            <!-- Drop Area -->
-            <div id="dropZone" class="border-2 border-dashed border-indigo-300 rounded-xl p-8 text-center cursor-pointer hover:border-indigo-500 hover:bg-indigo-50/50 transition">
-                <input type="file" id="fileInput" accept=".heic, .HEIC, .heif, .HEIF" class="hidden">
-                <div class="flex flex-col items-center gap-2">
-                    <svg class="w-12 h-12 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                    <span class="font-semibold text-slate-700">HEIC Dosyanızı Buraya Sürükleyin</span>
-                    <span class="text-xs text-slate-400">veya bilgisayarınızdan seçmek için tıklayın</span>
+        <!-- Upload & Drop Area -->
+        <div id="drop-zone" class="border-2 border-dashed border-indigo-300 rounded-2xl bg-white p-8 text-center hover:border-indigo-500 transition-colors cursor-pointer shadow-sm relative mb-8">
+            <input type="file" id="file-input" multiple accept=".heic,.HEIC" class="hidden">
+            <div class="flex flex-col items-center justify-center space-y-3">
+                <div class="p-3 bg-indigo-50 text-indigo-600 rounded-full">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 </div>
-            </div>
-
-            <!-- Controls (Hidden initially) -->
-            <div id="controls" class="mt-6 hidden flex-col gap-4">
-                <div class="flex items-center justify-between bg-slate-100 p-3 rounded-lg text-sm">
-                    <span id="fileName" class="font-medium truncate max-w-[200px]">dosya.heic</span>
-                    <div class="flex items-center gap-2">
-                        <label class="text-xs text-slate-600">Format:</label>
-                        <select id="formatSelect" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs">
-                            <option value="image/jpeg">JPG</option>
-                            <option value="image/png">PNG</option>
-                        </select>
-                    </div>
+                <div>
+                    <p class="text-lg font-semibold text-slate-700">Drag & Drop Your HEIC Files Here</p>
+                    <p class="text-sm text-slate-400 mt-1">or <span class="text-indigo-600 font-medium underline">browse files</span> from your computer</p>
                 </div>
-
-                <button id="convertBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition shadow-sm">
-                    Dönüştür ve İndir
-                </button>
-            </div>
-
-            <!-- Status / Progress -->
-            <div id="status" class="mt-4 text-center text-sm font-medium text-slate-600 hidden"></div>
-
-            <!-- Preview & Download Area -->
-            <div id="resultArea" class="mt-6 hidden text-center">
-                <img id="previewImg" class="max-h-64 mx-auto rounded-lg shadow border mb-4" src="" alt="Dönüştürülen Görsel">
-                <a id="downloadBtn" href="" download="image.jpg" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-2 rounded-lg transition">
-                    İndir
-                </a>
             </div>
         </div>
 
-        <!-- SEO Text Content -->
-        <article class="mt-12 bg-white p-6 rounded-2xl border border-slate-200 text-sm text-slate-600 space-y-4">
-            <h3 class="text-base font-bold text-slate-800">HEIC Formatı Nedir? Neden JPG'ye Dönüştürülmeli?</h3>
-            <p>HEIC (High Efficiency Image Format), Apple'ın iOS 11 ile birlikte iPhone cihazlarda varsayılan olarak kullanmaya başladığı yüksek verimlilik sunan bir görsel formatıdır. Fotoğraf kalitesini bozmadan daha az yer kaplar ancak Windows, Android veya bazı web siteleri tarafından doğrudan açılamayabilir.</p>
-            <h3 class="text-base font-bold text-slate-800">Gizliliğiniz Nasıl Korunur?</h3>
-            <p>Sitemiz dosyalarınızı hiçbir uzak sunucuya (server) göndermez. Tüm dönüştürme işlemi tarayıcınızın kendi işlem gücü kullanılarak bilgisayarınızda yapılır. Bu sayede fotoğraflarınız tamamen gizli kalır.</p>
-        </article>
+        <!-- Action Panel -->
+        <div id="action-panel" class="hidden bg-white p-6 rounded-xl border border-slate-200 shadow-sm mb-8 space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <span id="file-count" class="font-semibold text-slate-800">0 files selected</span>
+                    <p class="text-xs text-slate-500">Ready for conversion</p>
+                </div>
+                <div class="flex gap-3">
+                    <button id="convert-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-5 py-2.5 rounded-lg transition-colors shadow-sm">Convert to JPG</button>
+                    <button id="download-all-btn" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-5 py-2.5 rounded-lg transition-colors shadow-sm">Download All (.ZIP)</button>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div id="progress-container" class="hidden w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <!-- File List Container -->
+        <div id="file-list" class="space-y-3 mb-12"></div>
+
+        <!-- Info / SEO Section -->
+        <section class="bg-white rounded-xl border border-slate-200 p-6 space-y-6 text-sm text-slate-600">
+            <div>
+                <h3 class="text-base font-semibold text-slate-900 mb-1">What is HEIC? Why convert to JPG?</h3>
+                <p>HEIC (High Efficiency Image Format) is the default image format on Apple devices running iOS 11 and later. While it saves storage space, many devices, websites, and Windows applications cannot open or display HEIC files directly. Converting them to JPG ensures universal compatibility.</p>
+            </div>
+            <div>
+                <h3 class="text-base font-semibold text-slate-900 mb-1">How is your privacy protected?</h3>
+                <p>Unlike traditional online converters, your images are never uploaded to any remote server or third-party cloud service. All conversion processing is handled entirely within your browser engine on your local computer.</p>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400">
-        &copy; 2026 HEIC2JPG Quick — Tüm İşlemler İstemci Taraflıdır (Client-Side).
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400">
+        <p>&copy; 2026 HEIC2JPG Quick. All rights reserved. Client-side browser processing.</p>
     </footer>
 
-    <!-- Script Logic -->
+    <!-- JavaScript Logic -->
     <script>
-        const dropZone = document.getElementById('dropZone');
-        const fileInput = document.getElementById('fileInput');
-        const controls = document.getElementById('controls');
-        const fileName = document.getElementById('fileName');
-        const convertBtn = document.getElementById('convertBtn');
-        const status = document.getElementById('status');
-        const resultArea = document.getElementById('resultArea');
-        const previewImg = document.getElementById('previewImg');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const formatSelect = document.getElementById('formatSelect');
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const actionPanel = document.getElementById('action-panel');
+        const fileCountText = document.getElementById('file-count');
+        const convertBtn = document.getElementById('convert-btn');
+        const downloadAllBtn = document.getElementById('download-all-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
+        const fileList = document.getElementById('file-list');
 
-        let currentFile = null;
+        let selectedFiles = [];
+        let convertedFiles = [];
 
         dropZone.addEventListener('click', () => fileInput.click());
 
@@ -120,55 +109,103 @@
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.classList.remove('border-indigo-500', 'bg-indigo-50/50');
-            if (e.dataTransfer.files.length) {
-                handleFile(e.dataTransfer.files[0]);
-            }
+            if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
         });
 
         fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length) {
-                handleFile(e.target.files[0]);
-            }
+            if (e.target.files.length) handleFiles(e.target.files);
         });
 
-        function handleFile(file) {
-            currentFile = file;
-            fileName.textContent = file.name;
-            controls.classList.remove('hidden');
-            controls.classList.add('flex');
-            resultArea.classList.add('hidden');
-            status.classList.add('hidden');
+        function handleFiles(files) {
+            const validFiles = Array.from(files).filter(file => file.name.toLowerCase().endsWith('.heic'));
+            if (!validFiles.length) {
+                alert('Please select valid .HEIC format files.');
+                return;
+            }
+            selectedFiles = [...selectedFiles, ...validFiles];
+            updateUI();
+        }
+
+        function updateUI() {
+            actionPanel.classList.remove('hidden');
+            fileCountText.textContent = `${selectedFiles.length} file(s) selected`;
+            fileList.innerHTML = '';
+
+            selectedFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = 'bg-white p-4 rounded-xl border border-slate-200 flex items-center justify-between text-sm shadow-sm';
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3 overflow-hidden">
+                        <span class="p-2 bg-slate-100 rounded-lg text-slate-500 font-mono text-xs">HEIC</span>
+                        <div class="truncate">
+                            <p class="font-medium text-slate-800 truncate">${file.name}</p>
+                            <p class="text-xs text-slate-400">${(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                        </div>
+                    </div>
+                    <span id="status-${index}" class="text-xs px-2.5 py-1 rounded-full font-medium bg-slate-100 text-slate-600">Ready</span>
+                `;
+                fileList.appendChild(item);
+            });
         }
 
         convertBtn.addEventListener('click', async () => {
-            if (!currentFile) return;
+            if (!selectedFiles.length) return;
 
-            status.textContent = 'Dönüştürülüyor, lütfen bekleyin...';
-            status.classList.remove('hidden');
             convertBtn.disabled = true;
+            convertBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            progressContainer.classList.remove('hidden');
+            convertedFiles = [];
 
-            try {
-                const targetFormat = formatSelect.value;
-                const blob = await heic2any({
-                    blob: currentFile,
-                    toType: targetFormat,
-                    quality: 0.9
-                });
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const file = selectedFiles[i];
+                const statusTag = document.getElementById(`status-${i}`);
+                statusTag.textContent = 'Converting...';
+                statusTag.className = 'text-xs px-2.5 py-1 rounded-full font-medium bg-amber-50 text-amber-600';
 
-                const url = URL.createObjectURL(blob);
-                previewImg.src = url;
-                downloadBtn.href = url;
-                
-                const ext = targetFormat === 'image/png' ? 'png' : 'jpg';
-                downloadBtn.download = currentFile.name.replace(/\.[^/.]+$/, "") + "." + ext;
+                try {
+                    const blob = await heic2any({
+                        blob: file,
+                        toType: 'image/jpeg',
+                        quality: 0.9
+                    });
 
-                status.textContent = 'Dönüştürme Başarılı!';
-                resultArea.classList.remove('hidden');
-            } catch (err) {
-                status.textContent = 'Hata oluştu! Lütfen geçerli bir .heic veya .heif dosyası seçin.';
-                console.error(err);
-            } finally {
-                convertBtn.disabled = false;
+                    const resultBlob = Array.isArray(blob) ? blob[0] : blob;
+                    const convertedName = file.name.replace(/\.heic$/i, '.jpg');
+
+                    convertedFiles.push({ name: convertedName, blob: resultBlob });
+
+                    statusTag.textContent = 'Completed';
+                    statusTag.className = 'text-xs px-2.5 py-1 rounded-full font-medium bg-emerald-50 text-emerald-600';
+                } catch (err) {
+                    statusTag.textContent = 'Error';
+                    statusTag.className = 'text-xs px-2.5 py-1 rounded-full font-medium bg-rose-50 text-rose-600';
+                }
+
+                const progress = ((i + 1) / selectedFiles.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            if (convertedFiles.length > 0) {
+                downloadAllBtn.classList.remove('hidden');
+            }
+        });
+
+        downloadAllBtn.addEventListener('click', async () => {
+            if (convertedFiles.length === 1) {
+                const item = convertedFiles[0];
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(item.blob);
+                link.download = item.name;
+                link.click();
+            } else if (convertedFiles.length > 1) {
+                const zip = new JSZip();
+                convertedFiles.forEach(item => zip.file(item.name, item.blob));
+                const zipBlob = await zip.generateAsync({ type: 'blob' });
+
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(zipBlob);
+                link.download = 'converted-images.zip';
+                link.click();
             }
         });
     </script>
